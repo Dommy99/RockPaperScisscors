@@ -25,7 +25,7 @@ On 3 ROCK, PAPER, SCISSORS SHOOT! Play a fun game in the terminal with a friend 
 - As a user, I should not be able to type in a wrong input.
 - As a user, I should be shown a message when I win, lose or tie.
 
-![RockPaperScissor.](/RPCJava.JPG)
+![RockPaperScissor.](/src/RPCJava.JPG)
 
 ## Roles
 
