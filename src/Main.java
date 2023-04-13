@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Player player1 = new Player("Player1",0);
-        Player player2 = new Player("Player2",0);
+        HumanPlayer player1 = new HumanPlayer();
+        HumanPlayer player2 = new HumanPlayer();
+        Computer cpu = new Computer();
     playGame(player1, player2);
     }
 
@@ -16,19 +17,22 @@ public class Main {
  *
  */
         Scanner userInput = new Scanner(System.in);
-        System.out.println("Enter Play(p), History(h), or Quit(q)");
+        System.out.println("Enter PvP(p), PvC(c) History(h), or Quit(q)");
         String answer = userInput.nextLine();
         System.out.println(answer);
         if(answer.equalsIgnoreCase("p")){
-            startGame( player1, player2);
+            pvpGame(player1,player2);
+
         }else if (answer.equalsIgnoreCase("h")){
 
             history();
         }else if (answer.equalsIgnoreCase("q")){
 
             quit();
+        }else if (answer.equalsIgnoreCase("c")){
+            startGame( player1, player2);
         }else {
-
+            return;
         }
     userInput.close();
 
@@ -41,9 +45,6 @@ public class Main {
         Scanner player1Pick = new Scanner(System.in);
         System.out.println("Player1 Pick Rock(r), Paper(p), or Scissors(s)");
         String p1Answer = player1Pick.nextLine();
-
-//        Scanner player2Pick = new Scanner(System.in);
-//        System.out.println("Player2 Pick Rock(r), Paper(p), or Scissors(s)");
         String[] computerMovesArr = {"r","s","p"};
         int randomIndex = new Random().nextInt(computerMovesArr.length);
         String p2Answer = computerMovesArr[randomIndex];
@@ -93,6 +94,46 @@ public class Main {
          */
 
 
+    }
+    public static void pvpGame(Player player1, Player player2){
+        int player1wins= 0;
+        int player2wins= 0;
+
+        Scanner player1Pick = new Scanner(System.in);
+        Scanner player2Pick = new Scanner(System.in);
+        System.out.println("Player1 Pick Rock(r), Paper(p), or Scissors(s)");
+        String p1Answer = player1Pick.nextLine();
+        String p2Answer = player2Pick.nextLine();
+
+            if (p1Answer.equalsIgnoreCase("r") && p2Answer.equalsIgnoreCase("s")) {
+                player1wins++;
+                System.out.println("Player1 wins: " + player1wins);
+                startGame(player1, player2);
+            } else if (p1Answer.equalsIgnoreCase("r") && p2Answer.equalsIgnoreCase("p")) {
+                player2wins++;
+                System.out.println("Player2 wins: " + player2wins);
+                startGame(player1, player2);
+
+            } else if (p1Answer.equalsIgnoreCase("p") && p2Answer.equalsIgnoreCase("s")) {
+                player2wins++;
+                System.out.println("Player2 wins: " + player2wins);
+                startGame(player1, player2);
+            } else if (p1Answer.equalsIgnoreCase("p") && p2Answer.equalsIgnoreCase("r")) {
+                player1wins++;
+                System.out.println("Player1 wins: " + player1wins);
+                startGame(player1, player2);
+            } else if (p1Answer.equalsIgnoreCase("s") && p2Answer.equalsIgnoreCase("r")) {
+                player2wins++;
+                System.out.println("Player2 wins: " + player2wins);
+                startGame(player1, player2);
+            } else if (p1Answer.equalsIgnoreCase("s") && p2Answer.equalsIgnoreCase("p")) {
+                player1wins++;
+                System.out.println("Player1 wins: " + player1wins);
+                startGame(player1, player2);
+            } else {
+                System.out.println("Draw");
+                startGame(player1, player2);
+            }
     }
     public static void history(){
         System.out.println("history");
