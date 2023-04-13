@@ -85,61 +85,58 @@ public class Main {
     }
 
     public static void pvpGame(Player player1, Player player2, Computer computer, GameHistory gameHistory) {
-
         Scanner player1Pick = new Scanner(System.in);
         Scanner player2Pick = new Scanner(System.in);
+
         System.out.println("Player1 Pick Rock(r), Paper(p), Scissors(s) or History(h)");
         String p1Answer = player1Pick.nextLine();
+        System.out.println("Player2 Pick Rock(r), Paper(p), Scissors(s) or History(h)");
         String p2Answer = player2Pick.nextLine();
+
         String[] correctInput = new String[]{"r", "s", "p", "h"};
 
         if (Arrays.asList(correctInput).contains(p1Answer) && Arrays.asList(correctInput).contains(p2Answer)) {
-            if (p1Answer.equalsIgnoreCase("r") && p2Answer.equalsIgnoreCase("s")) {
-                player1.setWins();
-                System.out.println("Player1 wins");
-                pvpGame(player1, player2, computer, gameHistory);
-            } else if (p1Answer.equalsIgnoreCase("r") && p2Answer.equalsIgnoreCase("p")) {
-                player2.setWins();
-                System.out.println("Player2 wins");
-                pvpGame(player1, player2, computer, gameHistory);
-
-            } else if (p1Answer.equalsIgnoreCase("p") && p2Answer.equalsIgnoreCase("s")) {
-                player2.setWins();
-                System.out.println("Player2 wins");
-                pvpGame(player1, player2, computer, gameHistory);
-            } else if (p1Answer.equalsIgnoreCase("p") && p2Answer.equalsIgnoreCase("r")) {
-                player1.setWins();
-                System.out.println("Player1 wins");
-                pvpGame(player1, player2, computer, gameHistory);
-            } else if (p1Answer.equalsIgnoreCase("s") && p2Answer.equalsIgnoreCase("r")) {
-                player2.setWins();
-                System.out.println("Player2 wins");
-                pvpGame(player1, player2, computer, gameHistory);
-            } else if (p1Answer.equalsIgnoreCase("s") && p2Answer.equalsIgnoreCase("p")) {
-                player1.setWins();
-                System.out.println("Player1 wins");
-                pvpGame(player1, player2, computer, gameHistory);
-
-            } else if (p1Answer.equalsIgnoreCase("h") || (p2Answer.equalsIgnoreCase("h"))) {
-                gameHistory.addMatchResult("Player 1", player1.getWins());
-                gameHistory.addMatchResult("Player 2", player2.getWins());
+            if (p1Answer.equalsIgnoreCase("h") || p2Answer.equalsIgnoreCase("h")) {
                 history(player1, player2, computer, gameHistory);
-            } else {
-                System.out.println("Draw");
                 pvpGame(player1, player2, computer, gameHistory);
-
+            } else {
+                if (p1Answer.equalsIgnoreCase("r") && p2Answer.equalsIgnoreCase("s")) {
+                    player1.setWins();
+                    gameHistory.addMatchResult("Player 1", player1.getWins());
+                    System.out.println("Player1 wins");
+                } else if (p1Answer.equalsIgnoreCase("r") && p2Answer.equalsIgnoreCase("p")) {
+                    player2.setWins();
+                    gameHistory.addMatchResult("Player 2", player2.getWins());
+                    System.out.println("Player2 wins");
+                } else if (p1Answer.equalsIgnoreCase("p") && p2Answer.equalsIgnoreCase("s")) {
+                    player2.setWins();
+                    gameHistory.addMatchResult("Player 2", player2.getWins());
+                    System.out.println("Player2 wins");
+                } else if (p1Answer.equalsIgnoreCase("p") && p2Answer.equalsIgnoreCase("r")) {
+                    player1.setWins();
+                    gameHistory.addMatchResult("Player 1", player1.getWins());
+                    System.out.println("Player1 wins");
+                } else if (p1Answer.equalsIgnoreCase("s") && p2Answer.equalsIgnoreCase("r")) {
+                    player2.setWins();
+                    gameHistory.addMatchResult("Player 2", player2.getWins());
+                    System.out.println("Player2 wins");
+                } else if (p1Answer.equalsIgnoreCase("s") && p2Answer.equalsIgnoreCase("p")) {
+                    player1.setWins();
+                    gameHistory.addMatchResult("Player 1", player1.getWins());
+                    System.out.println("Player1 wins");
+                } else {
+                    System.out.println("Draw");
+                }
+                pvpGame(player1, player2, computer, gameHistory);
             }
-        }else {
+        } else {
             System.out.println("Incorrect Input");
             pvpGame(player1, player2, computer, gameHistory);
         }
     }
 
+
     public static void history(Player player1, Player player2, Computer computer, GameHistory gameHistory) {
-//        System.out.println("*** History *** "+ '\n' +
-//                "Player 1 wins: "+ player1.getWins() + '\n' +
-//                "Player 2 wins: "+ player2.getWins()+ '\n' +
-//                "Cpu wins: "+ computer.getWins());
         System.out.println(gameHistory.getGameHistory());
 
         game(player1, player2, computer, gameHistory);
