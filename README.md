@@ -46,7 +46,7 @@ git clone "add clone text here"
 - Player v Player local gameplay.
 - Player v Ai.
 - Check history.
-- Keep track of multiple game rounds with a win, lose and tie counter.
+- Keep track of multiple game rounds with a win counter.
 ### Future Features
 - Audio.
 
@@ -55,6 +55,5 @@ git clone "add clone text here"
 - OOP and modularity.
 
 ## Credits
-- Modal code [W3Schools](https://www.w3schools.com/howto/howto_css_modals.asp).
 - Shout out to [Kevin-Barrios](https://github.com/dayjyun) for help with bug fixes and code reviews.
 - Special thanks to Suresh Sigera for helping me manage product design and OOP. 
