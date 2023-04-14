@@ -4,7 +4,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    //    private ArrayList<String> gameHistory = new ArrayList<>();
+    /**
+     * Main method that initializes two HumanPlayers, a Computer, and GameHistory object and starts the game loop.
+     */
     public static void main(String[] args) {
         HumanPlayer player1 = new HumanPlayer();
         HumanPlayer player2 = new HumanPlayer();
@@ -12,7 +14,9 @@ public class Main {
         GameHistory gameHistory = new GameHistory();
         game(player1, player2, cpu, gameHistory);
     }
-
+    /**
+     * Main game loop that prompts the user to choose a game mode, view history, or quit the game.
+     */
     public static void game(Player player1, Player player2, Computer computer, GameHistory gameHistory) {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Enter PvP(p), PvC(c) History(h), or Quit(q)");
@@ -25,23 +29,26 @@ public class Main {
 
             history(player1, player2, computer, gameHistory);
         } else if (answer.equalsIgnoreCase("q")) {
-
             userInput.close();
         } else if (answer.equalsIgnoreCase("c")) {
             cpuGame(player1, player2, computer, gameHistory);
         } else {
-            return;
+            System.out.println("Invalid Input");
+            game(player1,player2,computer,gameHistory);
         }
         userInput.close();
 
     }
-
+    /**
+     * Player versus Computer game mode where the player makes a move and the computer generates a random move.
+     * Keeps track of wins and the game history.
+     */
     public static void cpuGame(Player player1, Player player2, Computer computer, GameHistory gameHistory) {
 
         Scanner player1Pick = new Scanner(System.in);
         System.out.println("Player1 Pick Rock(r), Paper(p), Scissors(s) or History(h)");
         String p1Answer = player1Pick.nextLine();
-        String p2Answer = computer.getMove();
+        String p2Answer = computer.getMove();// gets the random data from the computer class
         String[] correctInput = new String[]{"r", "s", "p", "h"};
 
         if (Arrays.asList(correctInput).contains(p1Answer) && Arrays.asList(correctInput).contains(p2Answer)) {
@@ -83,7 +90,10 @@ public class Main {
         }
 
     }
-
+    /**
+     * Player versus Player game mode where both players make a move.
+     * Keeps track of wins and the game history.
+     */
     public static void pvpGame(Player player1, Player player2, Computer computer, GameHistory gameHistory) {
         Scanner player1Pick = new Scanner(System.in);
         Scanner player2Pick = new Scanner(System.in);
@@ -135,7 +145,9 @@ public class Main {
         }
     }
 
-
+    /**
+     * Displays the history of games played.
+     */
     public static void history(Player player1, Player player2, Computer computer, GameHistory gameHistory) {
         System.out.println(gameHistory.getGameHistory());
 

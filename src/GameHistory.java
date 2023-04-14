@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * A class that holds an arraylist this array stores the wins into the gameHistory
+ */
 class GameHistory {
     private ArrayList<String> gameHistory;
 

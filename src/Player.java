@@ -1,3 +1,6 @@
+/**
+ * Player class that holds the players wins
+ */
 public abstract class  Player {
     private int wins;
 
